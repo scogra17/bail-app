@@ -9,10 +9,6 @@ configure do
   set :erb, escape_html: true
 end
 
-after do
-  @storage.disconnect
-end
-
 # load home page
 get "/" do
   "Hello world"
