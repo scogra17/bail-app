@@ -19,6 +19,7 @@ CREATE TABLE attendees (
   pkey UUID NOT NULL DEFAULT uuid_generate_v1(),
   display_name text NOT NULL,
   email text NOT NULL,
+  bailed boolean NOT NULL DEFAULT false,
   bailcode text NOT NULL,
   event_id UUID NOT NULL REFERENCES events (pkey)
 );

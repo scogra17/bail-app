@@ -1,10 +1,20 @@
 class Attendee
-  attr_reader :name, :email, :bailcode, :event_key
+  attr_reader :key, :name, :email, :bailcode, :bailed, :event_key
 
-  def initialize(name, email, bailcode, event_key)
+  def initialize(key, name, email, bailcode, bailed=false, event_key)
+    @key = key
     @name = name
     @email = email
     @bailcode = bailcode
+    @bailed = bailed
     @event_key = event_key
   end
+
+  def bail!
+    self.bailed = true
+  end
+
+  private
+
+  attr_writer :bailed
 end

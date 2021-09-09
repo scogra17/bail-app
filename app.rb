@@ -18,6 +18,7 @@ configure(:development) do
   require "sinatra/reloader"
   also_reload "database_persistence.rb"
   also_reload "event.rb"
+  also_reload "attendee.rb"
 end
 
 after do
@@ -67,6 +68,7 @@ end
 get "/event/:key" do
   event_key = params[:key]
   @event = @storage.find_event(event_key)
+  @attendees = @storage.find_event_attendees(event_key)
 
   erb :event, layout: :layout
 end
@@ -84,14 +86,50 @@ post "/event/:key/attend" do
   attendee_bailcode = params[:attendee_bailcode]
 
   attendee = Attendee.new(
+    nil,
     attendee_name,
     attendee_email,
     attendee_bailcode,
+    nil,
     attendee_event_key
   )
 
   @storage.create_new_attendee(attendee)
 
   redirect "/event/#{attendee_event_key}"
+end
+
+get "/event/:key/bail" do
+  @event_key = params[:key]
+
+  erb :bail, layout: :layout
+end
+
+post "/event/:key/bail" do
+  @event_key = params[:key]
+  attendee_email = params[:attendee_email]
+  attendee_bailcode = params[:attendee_bailcode]
+  proposed_attendee = Attendee.new(
+    nil,
+    nil,
+    attendee_email,
+    attendee_bailcode,
+    nil,
+    @event_key
+  )
+
+  # 1) pull information for given event and email
+  actual_attendee = @storage.find_event_attendee(proposed_attendee)
+  # 2) compare bailcodes
+  if !actual_attendee
+    erb :bail, layout: :layout
+  elsif actual_attendee.bailcode == proposed_attendee.bailcode
+    actual_attendee.bail!
+    @storage.update_attendee(actual_attendee)
+    # 4) call canceled logic
+    redirect "/event/#{@event_key}"
+  else
+    erb :bail, layout: :layout
+  end
 end
 

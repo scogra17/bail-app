@@ -5,6 +5,18 @@
   <p>Time: <%= @event.time %></p>
   <p>Description: <%= @event.description %></p>
   <p>Location: <%= @event.location %></p>
+  <div>
+    <h3>Attendees</h3>
+    <% if @attendees %>
+      <ul>
+      <% @attendees.each do |attendee|%>
+        <li>
+          <%= attendee.name %> | <%= attendee.email %>
+        </li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
 
   <form action="/event/<%= @event.key %>/bail" method="get">
     <button type="submit">Bail!</button>

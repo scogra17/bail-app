@@ -2,6 +2,7 @@ require "pg"
 require "pry-byebug"
 
 require_relative "event"
+require_relative "attendee"
 
 class DatabasePersistence
   def initialize(logger)
@@ -43,6 +44,9 @@ class DatabasePersistence
     SQL
 
     result = query(sql, key)
+
+    return nil if result.ntuples == 0
+
     tuple = result.first
     tuple_to_event(tuple)
   end
@@ -61,6 +65,46 @@ class DatabasePersistence
     )
   end
 
+  def find_event_attendees(event_key)
+    sql = <<~SQL
+      SELECT * FROM attendees
+      WHERE event_id = $1
+    SQL
+
+    result = query(sql, event_key)
+
+    return nil if result.ntuples == 0
+
+    result.map do |tuple|
+      tuple_to_attendee(tuple)
+    end
+  end
+
+  def find_event_attendee(attendee)
+    sql = <<~SQL
+      SELECT * FROM attendees
+      WHERE event_id = $1
+        AND email = $2
+    SQL
+
+    result = query(sql, attendee.event_key, attendee.email)
+
+    return nil if result.ntuples == 0
+
+    tuple = result.first
+    tuple_to_attendee(tuple)
+  end
+
+  def update_attendee(attendee)
+    sql = <<~SQL
+      UPDATE attendees
+      SET bailed = true
+      WHERE pkey = $1
+    SQL
+
+    query(sql, attendee.key)
+  end
+
   private
 
   def tuple_to_event(tuple)
@@ -77,6 +121,24 @@ class DatabasePersistence
       event_time,
       event_location,
       event_description
+    )
+  end
+
+  def tuple_to_attendee(tuple)
+    attendee_key = tuple["pkey"]
+    attendee_name = tuple["display_name"]
+    attendee_email = tuple["email"]
+    attendee_bailcode = tuple["bailcode"]
+    attendee_bailed = tuple["bailed"]
+    attendee_event_key = tuple["event_id"]
+
+    Attendee.new(
+      attendee_key,
+      attendee_name,
+      attendee_email,
+      attendee_bailcode,
+      attendee_bailed,
+      attendee_key
     )
   end
 
