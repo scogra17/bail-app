@@ -6,6 +6,7 @@ require "securerandom"
 
 require_relative "database_persistence"
 require_relative "event"
+require_relative "attendee"
 
 configure do
   enable :sessions
@@ -68,5 +69,29 @@ get "/event/:key" do
   @event = @storage.find_event(event_key)
 
   erb :event, layout: :layout
+end
+
+get "/event/:key/attend" do
+  @event_key = params[:key]
+
+  erb :new_attendee, layout: :layout
+end
+
+post "/event/:key/attend" do
+  attendee_event_key = params[:key]
+  attendee_name = params[:attendee_name]
+  attendee_email = params[:attendee_email]
+  attendee_bailcode = params[:attendee_bailcode]
+
+  attendee = Attendee.new(
+    attendee_name,
+    attendee_email,
+    attendee_bailcode,
+    attendee_event_key
+  )
+
+  @storage.create_new_attendee(attendee)
+
+  redirect "/event/#{attendee_event_key}"
 end
 

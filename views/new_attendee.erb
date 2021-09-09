@@ -1,0 +1,28 @@
+<form action="/event/<%= @event_key %>/attend" method="post">
+  <dl>
+    <dt>
+      <label for="attendee_name">Enter the name you wish to be displayed:</label>
+    </dt>
+    <dd>
+      <input name="attendee_name" placeholder="Display Name" type="text" value="">
+    </dd>
+
+    <dt>
+      <label for="attendee_email">Enter your email (this is how we'll notify you if the event is canceled):</label>
+    </dt>
+    <dd>
+      <input name="attendee_email" placeholder="Email Address" type="text" value="">
+    </dd>
+
+    <dt>
+      <label for="attendee_bailcode">Enter a "bailcode" that you'll use to verify yourself if you decide to conditionally bail:</label>
+    </dt>
+    <dd>
+      <input name="attendee_bailcode" placeholder="Bailcode" type="text" value="">
+    </dd>
+  </dl>
+  <fieldset class="actions">
+    <input type="submit" value="Add Attendance">
+    <a href="/">Cancel</a>
+  </fieldset>
+</form>

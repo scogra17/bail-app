@@ -33,7 +33,8 @@ class DatabasePersistence
       event.date,
       event.time,
       event.location,
-      event.description)
+      event.description
+    )
   end
 
   def find_event(key)
@@ -44,6 +45,20 @@ class DatabasePersistence
     result = query(sql, key)
     tuple = result.first
     tuple_to_event(tuple)
+  end
+
+  def create_new_attendee(attendee)
+    sql = <<~SQL
+      INSERT INTO attendees (display_name, email, bailcode, event_id)
+      VALUES ($1, $2, $3, $4)
+    SQL
+
+    query(sql,
+      attendee.name,
+      attendee.email,
+      attendee.bailcode,
+      attendee.event_key
+    )
   end
 
   private
