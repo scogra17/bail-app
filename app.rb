@@ -68,7 +68,10 @@ end
 get "/event/:key" do
   event_key = params[:key]
   @event = @storage.find_event(event_key)
-  @attendees = @storage.find_event_attendees(event_key)
+  attendees = @storage.find_event_attendees(event_key)
+  @event.attendees = attendees
+  @event.cancel! if @event.all_attendees_bailed?
+  @storage.update_event(@event)
 
   erb :event, layout: :layout
 end
@@ -126,10 +129,8 @@ post "/event/:key/bail" do
   elsif actual_attendee.bailcode == proposed_attendee.bailcode
     actual_attendee.bail!
     @storage.update_attendee(actual_attendee)
-    # 4) call canceled logic
     redirect "/event/#{@event_key}"
   else
     erb :bail, layout: :layout
   end
 end
-

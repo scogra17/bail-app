@@ -14,6 +14,10 @@ class Attendee
     self.bailed = true
   end
 
+  def bailed?
+    bailed
+  end
+
   private
 
   attr_writer :bailed

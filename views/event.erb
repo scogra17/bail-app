@@ -1,4 +1,12 @@
 <div>
+  <h3>Status</h3>
+  <% if @event.canceled? %>
+    <p>CANCELED</p>
+  <% else %>
+    <p>NOT CANCELED</p>
+  <% end %>
+</div>
+<div>
   <p>Name: <%= @event.name %></p>
   <p>Location: <%= @event.location %></p>
   <p>Date: <%= @event.date %></p>
@@ -7,9 +15,9 @@
   <p>Location: <%= @event.location %></p>
   <div>
     <h3>Attendees</h3>
-    <% if @attendees %>
+    <% if @event.attendees %>
       <ul>
-      <% @attendees.each do |attendee|%>
+      <% @event.attendees.each do |attendee|%>
         <li>
           <%= attendee.name %> | <%= attendee.email %>
         </li>

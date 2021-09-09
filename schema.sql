@@ -7,6 +7,7 @@ CREATE TABLE events (
   location text NOT NULL,
   start_date date DEFAULT CURRENT_DATE,
   start_time time NOT NULL DEFAULT '00:00:00',
+  canceled boolean NOT NULL DEFAULT false,
   created_at timestamp DEFAULT NOW()
 );
 

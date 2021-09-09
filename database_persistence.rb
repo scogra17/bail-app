@@ -105,6 +105,16 @@ class DatabasePersistence
     query(sql, attendee.key)
   end
 
+  def update_event(event)
+    sql = <<~SQL
+      UPDATE events
+      SET canceled = true
+      WHERE pkey = $1
+    SQL
+
+    query(sql, event.key)
+  end
+
   private
 
   def tuple_to_event(tuple)
@@ -129,7 +139,7 @@ class DatabasePersistence
     attendee_name = tuple["display_name"]
     attendee_email = tuple["email"]
     attendee_bailcode = tuple["bailcode"]
-    attendee_bailed = tuple["bailed"]
+    attendee_bailed = tuple["bailed"] == "t"
     attendee_event_key = tuple["event_id"]
 
     Attendee.new(
