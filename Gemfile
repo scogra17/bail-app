@@ -12,5 +12,7 @@ end
 gem "sinatra"
 gem "sinatra-contrib"
 gem "erubis"
+gem "pry-byebug"
+gem "securerandom"
 
 gem "pg"

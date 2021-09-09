@@ -1,7 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE events (
-  pkey UUID UNIQUE NOT NULL DEFAULT uuid_generate_v1(),
+  pkey UUID UNIQUE NOT NULL,
   name text NOT NULL,
   description text NOT NULL,
   location text NOT NULL,

@@ -1,0 +1,42 @@
+<form action="/event" method="post">
+  <dl>
+    <dt>
+      <label for="event_name">Enter the name for your event:</label>
+    </dt>
+    <dd>
+      <input name="event_name" placeholder="Event Name" type="text" value="">
+    </dd>
+
+    <dt>
+      <label for="event_date">Enter the date for your event:</label>
+    </dt>
+    <dd>
+      <input name="event_date" placeholder="Event Date" type="text" value="">
+    </dd>
+
+    <dt>
+      <label for="event_time">Enter the time for your new event:</label>
+    </dt>
+    <dd>
+      <input name="event_time" placeholder="Event Time" type="text" value="">
+    </dd>
+
+    <dt>
+      <label for="event_location">Enter the location for your new event:</label>
+    </dt>
+    <dd>
+      <input name="event_location" placeholder="Event Location" type="text" value="">
+    </dd>
+
+    <dt>
+      <label for="event_description">Enter the description for your new event:</label>
+    </dt>
+    <dd>
+      <textarea name="event_description" id="event_description" rows="20" cols="100" placeholder="Event Description"></textarea>
+    </dd>
+  </dl>
+  <fieldset class="actions">
+    <input type="submit" value="Save">
+    <a href="/dtsts">Cancel</a>
+  </fieldset>
+</form>

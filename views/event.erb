@@ -1,0 +1,16 @@
+<div>
+  <p>Name: <%= @event.name %></p>
+  <p>Location: <%= @event.location %></p>
+  <p>Date: <%= @event.date %></p>
+  <p>Time: <%= @event.time %></p>
+  <p>Description: <%= @event.description %></p>
+  <p>Location: <%= @event.location %></p>
+
+  <form action="/event/<%= @event.key %>/bail" method="get">
+    <button type="submit">Bail!</button>
+  </form>
+
+  <form action="/event/<%= @event.key %>/attend" method="get">
+    <button type="submit">Add attendance</button>
+  </form>
+</div>
