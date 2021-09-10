@@ -14,7 +14,7 @@ class Event
   end
 
   def all_attendees_bailed?
-    attendees.all?(&:bailed?)
+    !!(attendees.all?(&:bailed?) if attendees)
   end
 
   def cancel!

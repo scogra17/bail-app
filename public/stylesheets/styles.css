@@ -54,7 +54,35 @@ h1 {
   background-color: rgb(221, 222, 223);
 }
 
+.btn-cancel:hover {
+  background-color: rgb(201, 92, 92);
+}
+
 .logo {
   width: 40px;
   display: inline-block;
+}
+
+.form-col {
+  display: inline-block;
+  height: 100%;
+  margin-top: 10px;
+  vertical-align: top;
+  width: 49%;
+}
+
+.event-input {
+  display: block;
+  width: 80%;
+  margin: 10px;
+  font-size: 1.2rem;
+}
+
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-submit {
+  margin-top: 20px;
+  margin-left: 10px;
 }
