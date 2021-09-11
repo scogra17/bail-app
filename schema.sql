@@ -29,5 +29,4 @@ ALTER TABLE attendees
   ADD CHECK (LENGTH(TRIM(FROM display_name)) > 0),
   ADD CHECK (LENGTH(TRIM(FROM email)) > 0),
   ADD CHECK (email SIMILAR TO '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'),
-  ADD CHECK (LENGTH(TRIM(FROM mobile)) > 0),
   ADD CHECK (LENGTH(TRIM(FROM bailcode)) > 0);
