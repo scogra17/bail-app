@@ -1,36 +1,47 @@
-<div>
-  <h3>Status</h3>
-  <% if @event.canceled? %>
-    <p>CANCELED</p>
-  <% else %>
-    <p>NOT CANCELED</p>
-  <% end %>
-</div>
-<div>
-  <p>Name: <%= @event.name %></p>
-  <p>Location: <%= @event.location %></p>
-  <p>Date: <%= @event.date %></p>
-  <p>Time: <%= @event.time %></p>
-  <p>Description: <%= @event.description %></p>
-  <p>Location: <%= @event.location %></p>
-  <div>
-    <h3>Attendees</h3>
-    <% if @event.attendees %>
-      <ul>
-      <% @event.attendees.each do |attendee|%>
-        <li>
-          <%= attendee.name %> | <%= attendee.email %>
-        </li>
+<section class="event-page">
+  <ul class="event-header">
+    <li class="event-name event-item">
+      <%= @event.name %>
+      <% if @event.canceled %>
+        <p class="event-status canceled">
+          (CANCELED)
+        </p>
+      <% else %>
+        <p class="event-status not-canceled">
+          (NOT CANCELED)
+        </p>
       <% end %>
-      </ul>
-    <% end %>
+    </li>
+    <li class="event-date event-item">
+      <%= @event.date %>
+    </li>
+    <li class="event-time event-item">
+      <%= @event.time %>
+    </li>
+  </ul>
+
+  <div class="event-description-bar">
+    <%= @event.description %>
   </div>
 
-  <form action="/event/<%= @event.key %>/bail" method="get">
-    <button type="submit">Bail!</button>
-  </form>
-
-  <form action="/event/<%= @event.key %>/attend" method="get">
-    <button type="submit">Add attendance</button>
-  </form>
-</div>
+  <div class="event-attendees-bar">
+    <h2>Attendees</h2>
+    <ul class="event-attendees">
+      <% if @event.attendees %>
+        <% @event.attendees.each do |attendee|%>
+          <li>
+            <%= attendee.name %> | <%= attendee.email %>
+              <form action="/event/<%= @event.key %>/bail" method="get">
+                <button type="submit">Bail!</button>
+              </form>
+          </li>
+        <% end %>
+      <% end %>
+      <li>
+        <form action="/event/<%= @event.key %>/attend" method="get">
+          <button type="submit">Add attendance</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+<section>

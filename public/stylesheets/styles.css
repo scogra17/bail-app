@@ -19,6 +19,10 @@ h1 {
   font-weight: 400;
 }
 
+.header-item {
+  vertical-align: middle;
+}
+
 .bar {
   background-color: rgb(221, 222, 223);
   display: block;
@@ -59,7 +63,7 @@ h1 {
 }
 
 .logo {
-  width: 40px;
+  width: 50px;
   display: inline-block;
 }
 
@@ -85,4 +89,50 @@ textarea {
 .form-submit {
   margin-top: 20px;
   margin-left: 10px;
+}
+
+.event-header,
+.event-attendees {
+  display: block;
+  list-style-type: none;
+}
+
+.event-item {
+  display: inline-block;
+}
+
+.event-name {
+  width: 40%;
+}
+
+.event-date {
+  width: 20%;
+  font-style: italic;
+}
+
+.event-time {
+  width: 20%;
+  font-style: italic;
+}
+
+.event-status {
+  display: inline-block;
+}
+
+.canceled {
+  color: red;
+}
+
+.not-canceled {
+  color: green;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.event-page {
+  padding: 20px;
+  box-sizing: border-box;
 }
