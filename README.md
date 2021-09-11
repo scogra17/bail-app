@@ -1,3 +1,3 @@
 # About
 
-Simple web app
+Simple web app. A work in progress.
