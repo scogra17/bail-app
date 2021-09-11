@@ -1,7 +1,6 @@
 require "sinatra"
 require "sinatra/content_for"
 require "tilt/erubis"
-require "pry-byebug"
 require "securerandom"
 
 require_relative "database_persistence"

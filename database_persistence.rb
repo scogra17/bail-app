@@ -1,5 +1,4 @@
 require "pg"
-require "pry-byebug"
 
 require_relative "event"
 require_relative "attendee"
