@@ -8,7 +8,7 @@
 
     <li>
       <p class="event-detail-label">Status:</p>
-      <p class="event-detail"><%= @event.canceled? ? "CANCELED" : "NOT CANCELED" %></p>
+      <p class="event-detail event-status <%= @event.canceled? ? "canceled" : "" %>"><%= @event.canceled? ? "CANCELED" : "NOT CANCELED" %></p>
     </li>
 
     <li>
@@ -42,7 +42,7 @@
         <li>
             <form action="/event/<%= @event.key %>/bail" method="get">
               <input name="attendee_email" type="hidden" value="<%= attendee.email %>">
-              <button type="submit"><%= attendee.name %> (<%= attendee.email %>)</button>
+              <button class="add-attendees-button" type="submit"><%= attendee.name %> (<%= attendee.email %>)</button>
             </form>
         </li>
       <% end %>
