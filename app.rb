@@ -103,6 +103,7 @@ end
 
 get "/event/:key/bail" do
   @event_key = params[:key]
+  @attendee_email = params[:attendee_email]
 
   erb :bail, layout: :layout
 end

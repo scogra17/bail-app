@@ -1,47 +1,51 @@
 <section class="event-page">
-  <ul class="event-header">
-    <li class="event-name event-item">
-      <%= @event.name %>
-      <% if @event.canceled %>
-        <p class="event-status canceled">
-          (CANCELED)
-        </p>
-      <% else %>
-        <p class="event-status not-canceled">
-          (NOT CANCELED)
-        </p>
-      <% end %>
+  <h2>Event details</h2>
+  <ul class="event-details">
+    <li>
+      <p class="event-detail-label">Name:</p>
+      <p class="event-detail"><%= @event.name %></p>
     </li>
-    <li class="event-date event-item">
-      <%= @event.date %>
+
+    <li>
+      <p class="event-detail-label">Status:</p>
+      <p class="event-detail"><%= @event.canceled? ? "CANCELED" : "NOT CANCELED" %></p>
     </li>
-    <li class="event-time event-item">
-      <%= @event.time %>
+
+    <li>
+      <p class="event-detail-label">Date:</p>
+      <p class="event-detail"><%= @event.date %></p>
+    </li>
+
+    <li>
+      <p class="event-detail-label">Time:</p>
+      <p class="event-detail"><%= @event.time %></p>
+    </li>
+
+    <li>
+      <p class="event-detail-label">Location:</p>
+      <p class="event-detail"><%= @event.location %></p>
+    </li>
+
+    <li>
+      <p class="event-detail-label">Description:</p>
+      <p class="event-detail"><%= @event.description %></p>
     </li>
   </ul>
 
-  <div class="event-description-bar">
-    <%= @event.description %>
-  </div>
-
-  <div class="event-attendees-bar">
-    <h2>Attendees</h2>
-    <ul class="event-attendees">
-      <% if @event.attendees %>
-        <% @event.attendees.each do |attendee|%>
-          <li>
-            <%= attendee.name %> | <%= attendee.email %>
-              <form action="/event/<%= @event.key %>/bail" method="get">
-                <button type="submit">Bail!</button>
-              </form>
-          </li>
-        <% end %>
+  <h2 class="attendees-label">Attendees</h2>
+  <form class="new-attendee" action="/event/<%= @event.key %>/attend" method="get">
+    <button type="submit">Add</button>
+  </form>
+  <ul class="event-attendees">
+    <% if @event.attendees %>
+      <% @event.attendees.each do |attendee|%>
+        <li>
+            <form action="/event/<%= @event.key %>/bail" method="get">
+              <input name="attendee_email" type="hidden" value="<%= attendee.email %>">
+              <button type="submit"><%= attendee.name %> (<%= attendee.email %>)</button>
+            </form>
+        </li>
       <% end %>
-      <li>
-        <form action="/event/<%= @event.key %>/attend" method="get">
-          <button type="submit">Add attendance</button>
-        </form>
-      </li>
-    </ul>
-  </div>
+    <% end %>
+  </ul>
 <section>

@@ -1,17 +1,22 @@
 <section class="new-event-form">
+  <h2>Event details</h2>
   <form action="/event" method="post">
-    <div class="form-col">
-        <input class="event-input" name="event_name" placeholder="Event Name" type="text" value="">
-        <input class="event-input" name="event_date" placeholder="Event Date" type="date" value="">
-        <input class="event-input" name="event_time" placeholder="Event Time" type="time" value="">
-        <input class="event-input" name="event_location" placeholder="Event Location" type="text" value="">
-    </div>
-    <div class="form-col">
-      <textarea class="event-input" name="event_description" id="event_description" rows="5" cols="60" placeholder="Event Description"></textarea>
-    </div>
-    <div class="form-submit">
-      <button type="submit" class="btn">Add</button>
-      <a href="/" class="btn btn-cancel">Cancel</a>
-    </div>
+    <label for="event_name">Name/title</label>
+    <input name="event_name" placeholder="Event Name" type="text" value="">
+
+    <label for="event_date">Date</label>
+    <input name="event_date" placeholder="Event Date" type="date" value="">
+
+    <label for="event_time">Time</label>
+    <input name="event_time" placeholder="Event Time" type="time" value="">
+
+    <label for="event_location">Location</label>
+    <input name="event_location" placeholder="Event Location" type="text" value="">
+
+    <label for="event_description">Description</label>
+    <textarea name="event_description" id="event_description" placeholder="Event Description"></textarea>
+
+    <button type="submit">Add</button>
+    <a href="/">Cancel</a>
   </form>
 </section>

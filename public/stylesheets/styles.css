@@ -1,138 +1,82 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-
-  margin: 0;
-  width: 100%;
-  height: 90%;
-  position: absolute;
-}
-
-.site-header {
-  cursor: pointer;
-  display: inline-block;
+  font: normal 14px Helvetica, Arial, sans-serif;
 }
 
 h1 {
-  display: inline-block;
   font-size: 2em;
-  font-weight: 400;
 }
 
-.header-item {
-  vertical-align: middle;
+h1.header-item {
+  cursor: pointer;
 }
 
-.bar {
-  background-color: rgb(221, 222, 223);
+h2 {
+  font-size: 1.5em;
+}
+
+h2.attendees-label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+label {
   display: block;
+  padding-bottom: 10px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+textarea {
+  width: 50%;
+  height: 40px;
+  padding: 0 8px;
+  margin-bottom: 10px;
+  font: normal 14px Helvetica, Arial, sans-serif;
+  border-radius: 4px;
+  border: 1px solid #cecece;
   box-sizing: border-box;
-  padding: 5px 10px;
-}
-
-.site-body {
-  display: block;
-  height: 80%;
-}
-
-.home-button {
-  text-align: center;
-  padding-top: 15%;
-}
-
-.btn {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  padding: .375rem .75rem;
-  font-size: 1.5rem;
-  line-height: 1.5;
-  border-radius: .25rem;
-  border-width: .125rem;
-  color: rgb(0, 0, 0);
-  background-color: #ffffff;
-  border-color: #000000;
-}
-
-.btn:hover {
-  background-color: rgb(221, 222, 223);
-}
-
-.btn-cancel:hover {
-  background-color: rgb(201, 92, 92);
-}
-
-.logo {
-  width: 50px;
-  display: inline-block;
-}
-
-.form-col {
-  display: inline-block;
-  height: 100%;
-  margin-top: 10px;
-  vertical-align: top;
-  width: 49%;
-}
-
-.event-input {
-  display: block;
-  width: 80%;
-  margin: 10px;
-  font-size: 1.2rem;
 }
 
 textarea {
-  font-family: Arial, Helvetica, sans-serif;
+  height: 80px;
+  padding: 8px 8px;
 }
 
-.form-submit {
-  margin-top: 20px;
-  margin-left: 10px;
+button {
+  width: 50%;
+  height: 40px;
+  padding: 0 8px;
+  margin-top: 10px;
+  margin-right: 10px;
+  font: normal 14px Helvetica, Arial, sans-serif;
+  border-radius: 4px;
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
-.event-header,
-.event-attendees {
-  display: block;
-  list-style-type: none;
+button:hover {
+  background-color: rgb(221, 222, 223);
 }
 
-.event-item {
+form.new-attendee {
   display: inline-block;
-}
-
-.event-name {
-  width: 40%;
-}
-
-.event-date {
   width: 20%;
-  font-style: italic;
-}
-
-.event-time {
-  width: 20%;
-  font-style: italic;
-}
-
-.event-status {
-  display: inline-block;
-}
-
-.canceled {
-  color: red;
-}
-
-.not-canceled {
-  color: green;
 }
 
 ul {
   margin: 0;
   padding: 0;
+  list-style-type: none;
 }
 
-.event-page {
-  padding: 20px;
-  box-sizing: border-box;
+.event-detail-label {
+  font-weight: 600;
+  width: 15%;
+  display: inline-block;
+}
+
+.event-detail {
+  display: inline-block;
 }

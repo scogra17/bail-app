@@ -1,21 +1,13 @@
-<form action="/event/<%= @event_key %>/bail" method="post">
-  <dl>
-    <dt>
-      <label for="attendee_email">Enter your email:</label>
-    </dt>
-    <dd>
-      <input name="attendee_email" placeholder="Email Address" type="text" value="">
-    </dd>
+<section class="bail-form">
+  <h2>Enter credentials to bail</h2>
+  <form action="/event/<%= @event_key %>/bail" method="post">
+    <label for="attendee_email">Email:</label>
+    <input name="attendee_email" placeholder="Email Address" type="text" value=<%= @attendee_email ? @attendee_email : ""%>>
 
-    <dt>
-      <label for="attendee_bailcode">Enter your bailcode to verify your identity:</label>
-    </dt>
-    <dd>
-      <input name="attendee_bailcode" placeholder="Bailcode" type="text" value="">
-    </dd>
-  </dl>
-  <fieldset class="actions">
-    <input type="submit" value="Bail!">
-    <a href="/">Cancel</a>
-  </fieldset>
-</form>
+    <label for="attendee_bailcode">Bailcode:</label>
+    <input name="attendee_bailcode" placeholder="Bailcode" type="text" value="">
+
+    <button type="submit">Bail!</button>
+    <a href="/event/<%= @event_key %>">Cancel</a>
+  </form>
+</section>
